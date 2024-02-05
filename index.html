@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Synchronized Players</title>
+	<style>
+		#grid {
+			display: grid;
+			grid-gap: 2px;  /* 各セル間に1pxのスペースを作成 */
+			margin: 10px;
+		}
+		.cell {
+			width: 20px;
+			height: 20px;
+			outline: 1px solid black;
+		}
+		.character {
+			background-color: red;
+		}
+		.wall {
+			background-color: black;
+		}
+		
+		#controls {
+			display: grid;
+			grid-template-areas:
+				". up ."
+				"left . right"
+				". down .";
+			gap: 5px;
+			justify-content: start;  /* 左側に配置 */
+			align-items: center;
+		}
+		#up {
+			grid-area: up;
+		}
+		#down {
+			grid-area: down;
+		}
+		#left {
+			grid-area: left;
+		}
+		#right {
+			grid-area: right;
+		}
+	</style>
+</head>
+<body onload="init()">
+    <textarea id="mapInput" rows="6" cols="50" onclick="this.select()">5&#13;&#10;....#&#13;&#10;#..#.&#13;&#10;.P...&#13;&#10;..P..&#13;&#10;....#</textarea><br>
+    <button onclick="init()">初期化</button>
+    <div id="grid"></div>
+    <div id="controls">
+		<button id="up" onclick="move('up')">上</button>
+		<button id="left" onclick="move('left')">左</button>
+		<button id="right" onclick="move('right')">右</button>
+		<button id="down" onclick="move('down')">下</button>
+	</div>
+	<p id="moveCount">操作回数: 0</p>
+	<p id="clearMessage"></p>
+    <script src="game.js"></script>
+</body>
+</html>
