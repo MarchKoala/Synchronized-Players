@@ -42,12 +42,24 @@
 		#right {
 			grid-area: right;
 		}
+		
+		#status {
+			display: flex;
+		}
+		.statusText {
+			margin-bottom: 0;
+		}
+
 	</style>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body onload="init()">
-    <textarea id="mapInput" rows="6" cols="50" onclick="this.select()">5&#13;&#10;....#&#13;&#10;#..#.&#13;&#10;.P...&#13;&#10;..P..&#13;&#10;....#</textarea><br>
+    <textarea id="mapInput" rows="6" cols="50">5&#13;&#10;....#&#13;&#10;#..#.&#13;&#10;.P...&#13;&#10;..P..&#13;&#10;....#</textarea><br>
     <button onclick="init()">初期化</button>
+	<div id="status">
+		<p class="statusText" id="clearMessage"></p>
+		<p class="statusText" id="moveCount">操作回数: 0</p>
+	</div>
     <div id="grid"></div>
     <div id="controls">
 		<button id="up" onclick="move('up')">上</button>
@@ -55,8 +67,6 @@
 		<button id="right" onclick="move('right')">右</button>
 		<button id="down" onclick="move('down')">下</button>
 	</div>
-	<p id="moveCount">操作回数: 0</p>
-	<p id="clearMessage"></p>
     <script src="game.js"></script>
 </body>
 </html>
