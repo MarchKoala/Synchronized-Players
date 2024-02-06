@@ -38,36 +38,41 @@ function init() {
 
 // キャラクターの移動
 function move(direction) {
+	var moved = false;
     for (var i = 0; i < state.characters.length; i++) {
         var character = state.characters[i];
         switch (direction) {
             case 'up':
                 if (character.y > 0 && !isWall(character.x, character.y - 1)) {
                     character.y--;
+					moved = true;
                 }
                 break;
             case 'down':
                 if (character.y < state.gridSize.m - 1 && !isWall(character.x, character.y + 1)) {
                     character.y++;
+					moved = true;
                 }
                 break;
             case 'left':
                 if (character.x > 0 && !isWall(character.x - 1, character.y)) {
                     character.x--;
+					moved = true;
                 }
                 break;
             case 'right':
                 if (character.x < state.gridSize.n - 1 && !isWall(character.x + 1, character.y)) {
                     character.x++;
+					moved = true;
                 }
                 break;
         }
     }
-	if (!state.isCleared) {  // ゲームがクリアされていない場合にのみ操作回数を増やす
+	if (!state.isCleared && moved) {  // ゲームがクリアされていないとき、どちらかの移動が成立していれば操作回数を増やす
         state.moveCount++;
     }
-    render();
-    checkWin();
+	render();
+	checkWin();
 }
 
 // 壁があるかどうかをチェック
